@@ -1,4 +1,5 @@
 # Diffie Hellman Key Exchange :key:
+[![Build Status](https://travis-ci.org/daack/dh-key-exchange.svg?branch=master)](https://travis-ci.org/daack/dh-key-exchange)
 
 Diffie Hellman key exchange framework
 
