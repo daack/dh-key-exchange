@@ -86,6 +86,7 @@ if (bob.getAppPublicKey('alice')) {
 
 -------------------------------------------------------
 <a name="constructor"></a>
+
 ### Dh(app_name, opts)
 
 Creates a new instance of Dh.
@@ -101,12 +102,14 @@ Creates a new instance of Dh.
 
 -------------------------------------------------------
 <a name="createDH"></a>
+
 ### instance.createDH()
 
 Set a new DH instance, available by the dh attribute. [es: instance.dh]
 
 -------------------------------------------------------
 <a name="initalizeSession"></a>
+
 ### instance.initalizeSession(other_app_name, cb)
 
 Initialize the public key (each other) in order to start the communication
@@ -116,6 +119,7 @@ Initialize the public key (each other) in order to start the communication
 
 -------------------------------------------------------
 <a name="setAppPublicKey"></a>
+
 ### instance.setAppPublicKey(app_name, public_key)
 
 Set the public key for the specified app
@@ -125,6 +129,7 @@ Set the public key for the specified app
 
 -------------------------------------------------------
 <a name="getAppPublicKey"></a>
+
 ### instance.getAppPublicKey(app_name)
 
 Return the public key if present
@@ -133,6 +138,7 @@ Return the public key if present
 
 -------------------------------------------------------
 <a name="encrypt"></a>
+
 ### instance.encrypt(app_name, data)
 
 Encrypt data for the given app name
@@ -142,6 +148,7 @@ Encrypt data for the given app name
 
 -------------------------------------------------------
 <a name="decrypt"></a>
+
 ### instance.decrypt(app_name, data)
 
 Decrypt data with the public key of the given app name
@@ -151,12 +158,14 @@ Decrypt data with the public key of the given app name
 
 -------------------------------------------------------
 <a name="dh"></a>
+
 ### instance.dh
 
-Attribute with the DH nodejs crypto <a href="https://nodejs.org/api/crypto.html#crypto_class_diffiehellman">class</a>
+Attribute with the DH nodejs crypto <a target="_blank" href="https://nodejs.org/api/crypto.html#crypto_class_diffiehellman">class</a>
 
 -------------------------------------------------------
 <a name="crypter"></a>
+
 ### instance.crypter
 
 Attribute with the Crypter class
