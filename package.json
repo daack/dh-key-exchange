@@ -1,0 +1,32 @@
+{
+  "name": "diffie-hellman-key-exchange",
+  "version": "0.1.0",
+  "description": "Diffie Hellman key exchange framework",
+  "main": "dh.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daack/dh-key-exchange.git"
+  },
+  "keywords": [
+    "diffie hellman",
+    "crypt",
+    "key",
+    "secret"
+  ],
+  "author": "Matteo Maselli <mat.maselli@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daack/dh-key-exchange/issues"
+  },
+  "homepage": "https://github.com/daack/dh-key-exchange#readme",
+  "dependencies": {
+    "split2": "^2.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
