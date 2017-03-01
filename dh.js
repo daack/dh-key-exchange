@@ -135,6 +135,12 @@ Dh.prototype.decrypt = function(app_name, data) {
   return secret ? this.crypter.decrypt(data, secret) : null
 }
 
+Dh.prototype.addApp = function(app_name, opts) {
+  this.apps[app_name] = opts
+
+  return this
+}
+
 function ndj(json) {
   return JSON.stringify(json) + '\n'
 }

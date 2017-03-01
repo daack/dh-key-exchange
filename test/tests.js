@@ -36,6 +36,17 @@ describe('Dh', function() {
         newIstance().initializeSession('foo')
       }).to.throw(Error)
     })
+
+    it('should add an app', function() {
+      let base = newIstance()
+
+      base.addApp('test', {
+        host: '127.0.0.1',
+        port: 8000
+      })
+
+      chai.expect(base.apps['test'].port).to.equal(8000)
+    })
   })
 })
 

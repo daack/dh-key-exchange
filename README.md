@@ -77,6 +77,7 @@ if (bob.getAppPublicKey('alice')) {
   * <a href="#constructor"><code><b>Dh()</b></code></a>
   * <a href="#createDH"><code>instance.<b>createDH()</b></code></a>
   * <a href="#initalizeSession"><code>instance.<b>initalizeSession()</b></code></a>
+  * <a href="#addApp"><code>instance.<b>addApp()</b></code></a>
   * <a href="#setAppPublicKey"><code>instance.<b>setAppPublicKey()</b></code></a>
   * <a href="#getAppPublicKey"><code>instance.<b>getAppPublicKey()</b></code></a>
   * <a href="#encrypt"><code>instance.<b>encrypt()</b></code></a>
@@ -116,6 +117,16 @@ Initialize the public key (each other) in order to start the communication
 
 * `other_app_name`, app that i want to communicate
 * `cb`, function(secret_key) { assert.ok(this instanceof Dh) }
+
+-------------------------------------------------------
+<a name="addApp"></a>
+
+### instance.addApp(app_name, opts)
+
+Add one app connection to che instance configuration
+
+* `app_name`
+* `opts`, [es: 'bob': { host: '127.0.0.1', port: 8000 } ]
 
 -------------------------------------------------------
 <a name="setAppPublicKey"></a>
