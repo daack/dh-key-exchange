@@ -59,6 +59,14 @@ describe('Diffie Hellman', function() {
 
       chai.expect(old_key).to.be.not.equal(new_key)
     })
+
+    it("should set public key even if i don't know the app", function() {
+      let base = newIstance()
+
+      base.setAppPublicKey('test', 'public_key')
+
+      chai.expect(base.getAppPublicKey('test')).to.be.equal('public_key')
+    })
   })
 
   describe('compute secret', function() {

@@ -99,15 +99,11 @@ Dh.prototype.initalizeSession = function(app_name, cb) {
 }
 
 Dh.prototype.setAppPublicKey = function(app_name, public_key) {
-  const app = this.apps[app_name]
-
-  if (app) {
-    this.apps[app_name]['public_key'] = public_key
-
-    return true
+  if (!this.apps.hasOwnProperty(app_name)) {
+    this.apps[app_name] = {}
   }
 
-  return false
+  this.apps[app_name]['public_key'] = public_key
 }
 
 Dh.prototype.getAppPublicKey = function(app_name) {
