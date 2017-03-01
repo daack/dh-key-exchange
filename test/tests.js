@@ -60,12 +60,11 @@ describe('Diffie Hellman', function() {
       chai.expect(newIstance().dh.getPrivateKey()).to.be.an.instanceof(Buffer)
     })
 
-    it('should generate a new private key', function() {
+    it('should generate a new public key', function() {
       let base = newIstance()
       let old_key = base.dh.getPublicKey('hex')
 
-      base.createDH()
-      base.dh.generateKeys()
+      base.generateNewKeys()
       let new_key = base.dh.getPublicKey('hex')
 
       chai.expect(old_key).to.be.not.equal(new_key)

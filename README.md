@@ -77,6 +77,7 @@ if (bob.getAppPublicKey('alice')) {
 
   * <a href="#constructor"><code><b>Dh()</b></code></a>
   * <a href="#createDH"><code>instance.<b>createDH()</b></code></a>
+  * <a href="#generateNewKeys"><code>instance.<b>generateNewKeys()</b></code></a>
   * <a href="#initalizeSession"><code>instance.<b>initalizeSession()</b></code></a>
   * <a href="#addApp"><code>instance.<b>addApp()</b></code></a>
   * <a href="#setAppPublicKey"><code>instance.<b>setAppPublicKey()</b></code></a>
@@ -108,6 +109,13 @@ Creates a new instance of Dh.
 ### instance.createDH()
 
 Set a new DH instance, available by the dh attribute. [es: instance.dh]
+
+-------------------------------------------------------
+<a name="generateNewKeys"></a>
+
+### instance.generateNewKeys()
+
+Generate a new pair of keys
 
 -------------------------------------------------------
 <a name="initalizeSession"></a>

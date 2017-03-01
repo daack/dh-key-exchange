@@ -43,6 +43,12 @@ Dh.prototype.createDH = function(prime, generator) {
   return this.createDH()
 }
 
+Dh.prototype.generateNewKeys = function() {
+  this.createDH()
+
+  return this.dh.generateKeys()
+}
+
 Dh.prototype.listen = function(port) {
   net.createServer((socket) => {
     socket
