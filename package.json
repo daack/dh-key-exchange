@@ -1,6 +1,6 @@
 {
   "name": "diffie-hellman-key-exchange",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Diffie Hellman key exchange framework",
   "main": "dh.js",
   "scripts": {

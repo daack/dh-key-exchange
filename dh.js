@@ -50,7 +50,9 @@ Dh.prototype.listen = function(port) {
     .on('data', (data) => {
       const app_name = data.app ? this.crypter.decrypt(data.app) : null
 
-      if (app_name && this.setAppPublicKey(app_name, data.public_key)) {
+      if (app_name) {
+        this.setAppPublicKey(app_name, data.public_key)
+
         socket.write(ndj({
           app: this.crypter.encrypt(this.app),
           public_key: this.dh.getPublicKey('hex')
