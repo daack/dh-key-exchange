@@ -1,6 +1,6 @@
 {
   "name": "diffie-hellman-key-exchange",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Diffie Hellman key exchange framework",
   "main": "dh.js",
   "scripts": {
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/daack/dh-key-exchange#readme",
   "dependencies": {
+    "pino": "^4.0.1",
     "split2": "^2.1.1"
   },
   "devDependencies": {

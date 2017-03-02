@@ -29,6 +29,7 @@ const Dh = require('diffie-hellman-key-exchange')
 const alice = Dh('alice', {
   prime: 'prime',
   listen: 8000,
+  log_level: 'info',
   apps: {
     'bob': {
       host: '127.0.0.1',
@@ -99,6 +100,7 @@ Creates a new instance of Dh.
   * `prime`, the prime for DH
   * `generator`, the generator for DH
   * `listen`, on which port the application will listen for the handshake public key exchange [default: 8000]
+  * `log_level`, log level for the <a target="_blank" href="https://www.npmjs.com/package/pino">pino</a> instance [default: warn]
   * `crypter`
     * `algorithm`, algorithm used to encrypt [default: aes-256-ctr]
   * `apps`, object that contains all the apps [es: 'bob': { host: '127.0.0.1', port: 8000 } ]

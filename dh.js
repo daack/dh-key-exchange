@@ -3,6 +3,7 @@
 const crypto = require('crypto')
 const net = require('net')
 const split2 = require('split2')
+const pino = require('pino')
 
 const Crypter = require('./lib/crypter')
 
@@ -17,6 +18,10 @@ function Dh(app, opts) {
 
   this.app = app
   this.apps = opts.apps || {}
+  this.log = pino({
+    name: 'diffie-hellman-key-exchange',
+    level: opts.log_level || 'warn'
+  })
 
   this.createDH(opts.prime, opts.generator)
   this.dh.generateKeys()
@@ -50,7 +55,7 @@ Dh.prototype.generateNewKeys = function() {
 }
 
 Dh.prototype.listen = function(port) {
-  net.createServer((socket) => {
+  const server = net.createServer((socket) => {
     socket
     .pipe(split2(JSON.parse))
     .on('data', (data) => {
@@ -67,7 +72,15 @@ Dh.prototype.listen = function(port) {
 
       socket.end()
     })
-  }).listen(port)
+  })
+
+  server.on('error', (err) => {
+    this.log.fatal(err)
+  })
+
+  server.listen(port, () => {
+    this.log.info('start listening on port: ' + port)
+  })
 }
 
 Dh.prototype.initalizeSession = function(app_name, cb) {
@@ -104,6 +117,10 @@ Dh.prototype.initalizeSession = function(app_name, cb) {
 
     cb.call(this, secret)
   })
+
+  socket.on('error', (err) => {
+    this.log.fatal(err)
+  })
 }
 
 Dh.prototype.setAppPublicKey = function(app_name, public_key) {
@@ -112,6 +129,8 @@ Dh.prototype.setAppPublicKey = function(app_name, public_key) {
   }
 
   this.apps[app_name]['public_key'] = public_key
+
+  this.log.info('public key setted for app: ' + app_name)
 }
 
 Dh.prototype.getAppPublicKey = function(app_name) {
