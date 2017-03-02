@@ -64,7 +64,7 @@ if (bob.getAppPublicKey('alice')) {
 
   // send message
 } else {
-  bob.initalizeSession('alice', function(secret) {
+  bob.initalizeSession('alice', function(err, secret) {
     const message = this.encrypt('alice', 'hello')
 
     // send message
@@ -127,7 +127,7 @@ Generate a new pair of keys
 Initialize the public key (each other) in order to start the communication
 
 * `other_app_name`, app that i want to communicate
-* `cb`, function(secret_key) { assert.ok(this instanceof Dh) }
+* `cb`, function(err, secret_key) { assert.ok(this instanceof Dh) }
 
 -------------------------------------------------------
 <a name="addApp"></a>

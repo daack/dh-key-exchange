@@ -115,11 +115,13 @@ Dh.prototype.initalizeSession = function(app_name, cb) {
     const public_key = this.getAppPublicKey(app_name)
     const secret = public_key ? this.dh.computeSecret(public_key, 'hex', 'hex') : false
 
-    cb.call(this, secret)
+    cb.call(this, null, secret)
   })
 
   socket.on('error', (err) => {
     this.log.fatal(err)
+
+    cb.call(this, err, null)
   })
 }
 
