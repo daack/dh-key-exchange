@@ -1,6 +1,6 @@
 {
   "name": "diffie-hellman-key-exchange",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Diffie Hellman key exchange framework",
   "main": "dh.js",
   "scripts": {
@@ -25,8 +25,7 @@
   "dependencies": {
     "jsonschema": "^1.1.1",
     "pino": "^4.0.1",
-    "split2": "^2.1.1",
-    "swim": "^0.3.2"
+    "split2": "^2.1.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
