@@ -72,6 +72,35 @@ if (bob.getAppPublicKey('alice')) {
 }
 ```
 
+### Swimming Bob
+
+```javascript
+const Swim = require('swim')
+const Dh = require('diffie-hellman-key-exchange')
+
+const swim = new Swim({
+    local: {
+        host: 'my_host:port',
+        meta: {
+          // must have this object in order to communicate my connection info
+          dh: {
+            name: 'bob',
+            host: 'my_host',
+            port: 8001
+          }
+        }
+    }
+})
+
+swim.bootstrap(hostsToJoin)
+
+const bob = Dh('bob', {
+  prime: 'prime',
+  listen: 8001,
+  apps: swim // it will load all the app from swim
+})
+```
+
 <a name="api"></a>
 
 ## API
@@ -103,7 +132,7 @@ Creates a new instance of Dh.
   * `log_level`, log level for the <a target="_blank" href="https://www.npmjs.com/package/pino">pino</a> instance [default: warn]
   * `crypter`
     * `algorithm`, algorithm used to encrypt [default: aes-256-ctr]
-  * `apps`, object that contains all the apps [es: 'bob': { host: '127.0.0.1', port: 8000 } ]
+  * `apps`, could be a <a target="_blank" href="https://www.npmjs.com/package/swim">Swim</a> instance or object that contains all the apps [es: 'bob': { host: '127.0.0.1', port: 8000 } ]
 
 -------------------------------------------------------
 <a name="createDH"></a>

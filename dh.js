@@ -6,6 +6,7 @@ const split2 = require('split2')
 const pino = require('pino')
 
 const Crypter = require('./lib/crypter')
+const Swimmer = require('./lib/swimmer')
 
 function Dh(app, opts) {
   if (!(this instanceof Dh)) {
@@ -17,7 +18,17 @@ function Dh(app, opts) {
   }
 
   this.app = app
-  this.apps = opts.apps || {}
+  this.port = opts.listen || 8000
+  this.apps = {}
+
+  if (typeof opts.apps == 'object') {
+    if (opts.apps.constructor.name == 'Swim') {
+      Swimmer(opts.apps, this)
+    } else {
+      this.apps = opts.apps
+    }
+  }
+
   this.log = pino({
     name: 'diffie-hellman-key-exchange',
     level: opts.log_level || 'warn'
@@ -28,7 +39,7 @@ function Dh(app, opts) {
 
   this.crypter = Crypter(this.dh.getPrime('hex'), opts.crypter || {})
 
-  this.listen(opts.listen || 8000)
+  this.listen(this.port)
 }
 
 Dh.prototype.createDH = function(prime, generator) {
@@ -125,6 +136,22 @@ Dh.prototype.initalizeSession = function(app_name, cb) {
   })
 }
 
+Dh.prototype.getApp = function(app_name) {
+  return this.apps[app_name]
+}
+
+Dh.prototype.addApp = function(app_name, opts) {
+  this.apps[app_name] = opts
+
+  return this
+}
+
+Dh.prototype.removeApp = function(app_name) {
+  delete this.apps[app_name]
+
+  return this
+}
+
 Dh.prototype.setAppPublicKey = function(app_name, public_key) {
   if (!this.apps.hasOwnProperty(app_name)) {
     this.apps[app_name] = {}
@@ -162,12 +189,6 @@ Dh.prototype.decrypt = function(app_name, data) {
   const secret = this.computeAppSecret(app_name)
 
   return secret ? this.crypter.decrypt(data, secret) : null
-}
-
-Dh.prototype.addApp = function(app_name, opts) {
-  this.apps[app_name] = opts
-
-  return this
 }
 
 function ndj(json) {
