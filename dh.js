@@ -4,6 +4,7 @@ const crypto = require('crypto')
 const net = require('net')
 const split2 = require('split2')
 const pino = require('pino')
+const once = require('once')
 
 const Crypter = require('./lib/crypter')
 const Swimmer = require('./lib/swimmer')
@@ -96,6 +97,7 @@ Dh.prototype.listen = function(port) {
 
 Dh.prototype.initalizeSession = function(app_name, cb) {
   const app = this.apps[app_name]
+  cb = once(cb)
 
   if (!app) {
     throw new Error('app: ' + app_name + ' does not exist')
